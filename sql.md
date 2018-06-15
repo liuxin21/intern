@@ -1,3 +1,4 @@
+```sql
 create table cat
 (
     name varchar(20),
@@ -14,3 +15,11 @@ into table pet;
 insert into pet values
 ("...", ".", "..."),
 ("...", ".", "...");
+
+update pet
+sex = "m"
+where name = "liu";
+
+
+
+```
