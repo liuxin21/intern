@@ -20,6 +20,17 @@ update pet
 sex = "m"
 where name = "liu";
 
+```
 
 
+```sql
+select max(price) from shop; 
+
+select * from shop
+where price=(select max(price) from shop);
+
+select @mxp := max(price) from shop;
+
+select * from shop
+where price= @mxp
 ```
