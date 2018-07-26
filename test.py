@@ -11,3 +11,4 @@ print(df)
 print(df["c"]>5)
 df = df.loc[df["c"]>5, ["a","b"]]
 print(df)
+
