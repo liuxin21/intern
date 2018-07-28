@@ -25,12 +25,14 @@ def print_excel_name():
     name = entry_excel_name.get()
     wb = xlrd.open_workbook(name)
     sheets = wb.sheet_names()
+    for i in sheets:
+        i = i.strip()
     t.insert(2.2, sheets)
     
 btn_excel_name = tk.Button(window, text='查看表格', command=print_excel_name)
 btn_excel_name.place(x=170, y=110)
 
-t = tk.Text(window, height=6, width=50)
+t = tk.Text(window, height=6, width=110)
 t.place(x=0, y=140)
 
 tk.Label(window, text='表头在第几行:').place(x=50, y= 250)
