@@ -5,7 +5,27 @@ import xlrd
 from string import digits
 
 
-name = "yimeijie.xlsx"
-wb = xlrd.open_workbook(name)
-sheets = wb.sheet_names()
+def changeStringvar1():
+    #global a
+    a.set("1")
+    print(a.get()) ## 在这print a.get()就能打印在控制台里面了
+def changeStringvar2():
+    #global a
+    a.set("2")
+    print(a.get()) ## 在这print a.get()就能打印在控制台里面了
+def show():
+    print(a.get())
+    
+root=tk.Tk()
+a=tk.StringVar()
+button1=tk.Button(root,text='Change1',command=changeStringvar1)
+#label=tk.Label(root,textvariable=a)
+button1.pack()
+#label.pack()
+#print(a.get()) ##　这个时候打印出来的还没变化呢
+button2=tk.Button(root,text='Change2',command=changeStringvar2)
+button2.pack()
+button3 = tk.Button(root,text="show",command=show)
+button3.pack()
 
+tk.mainloop()
