@@ -51,12 +51,12 @@ def example():
     wb = xlrd.open_workbook(excel_name)
     sheets = wb.sheet_names()
     df = pd.read_excel(excel_name, sheetname=sheets[i])
-    t2.insert("end", df)
     df.columns = df.iloc[var_f.get()-2]
     df.index = range(len(df))
     df.drop([var_f.get()-2], axis=0, inplace=True)
     df.dropna(subset=['楼盘名称'],inplace=True)
-    df = df["楼盘名称","楼盘类型","媒体数量"]
+    df = df[["楼盘名称","楼盘类型","媒体数量"]]
+    t2.insert("end", df)
 
 btn_example = tk.Button(window, text='查看其中一个城市', command=example)
 btn_example.place(x=170, y=320)
