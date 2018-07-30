@@ -17,12 +17,13 @@ tk.Label(window, text='请输入文件名:').place(x=50, y= 80)
 tk.Label(window, text='(如果不能输入中文请粘贴excel文件名)').place(x=380, y= 80)
 
 var_excel_name = tk.StringVar()
-var_excel_name.set('example.xls 或 example.xlsx')
+var_excel_name.set('例如: yimeijie.xlsx')
 
 entry_excel_name = tk.Entry(window, textvariable=var_excel_name)
 entry_excel_name.place(x=170, y=80)
 
 def print_excel_name():
+    global sheets
     excel_name = entry_excel_name.get()
     wb = xlrd.open_workbook(excel_name)
     sheets = wb.sheet_names()
@@ -30,20 +31,51 @@ def print_excel_name():
         sheets[i] = sheets[i].strip()
     t1.insert("end", sheets)
     
-btn_excel_name = tk.Button(window, text='查看城市名称', command=print_excel_name)
+btn_excel_name = tk.Button(window, text='确定并查看城市名称', command=print_excel_name)
 btn_excel_name.place(x=170, y=120)
 
 t1 = tk.Text(window, height=6, width=80)
 t1.place(x=50, y=160)
 ##################################################################
 
-tk.Label(window, text='表头在第几行:').place(x=50, y= 280)
+tk.Label(window, text='输入你想查看的城市:').place(x=50, y=280)
+var_city_name = tk.StringVar()
+var_city_name.set('例如: 北京')
+entry_city_name = tk.Entry(window, textvariable=var_city_name)
+entry_city_name.place(x=200, y=280)
+
+def print_one_city():
+    excel_name = entry_excel_name.get()
+    wb = xlrd.open_workbook(excel_name)
+    sheets = wb.sheet_names()
+    for i in np.arange(len(sheets)):
+        sheets[i] = sheets[i].strip()
+    t1.insert("end", sheets)
+    
+btn_excel_name = tk.Button(window, text='确定并查看该城市', command=print_one_city)
+btn_excel_name.place(x=170, y=120)
+
+t1 = tk.Text(window, height=6, width=80)
+t1.place(x=50, y=160)
+##################################################################
+
+p1 = 320
+tk.Label(window, text='表头在第几行:').place(x=50, y= p1)
 var_f = tk.IntVar()
-tk.Radiobutton(window, text='1',variable=var_f, value=1).place(x=200, y= 280)
-tk.Radiobutton(window, text='2',variable=var_f, value=2).place(x=250, y= 280)
-tk.Radiobutton(window, text='3',variable=var_f, value=3).place(x=300, y= 280)
-tk.Radiobutton(window, text='4',variable=var_f, value=4).place(x=350, y= 280)
+tk.Radiobutton(window, text='1',variable=var_f, value=1).place(x=200, y= p1)
+tk.Radiobutton(window, text='2',variable=var_f, value=2).place(x=250, y= p1)
+tk.Radiobutton(window, text='3',variable=var_f, value=3).place(x=300, y= p1)
+tk.Radiobutton(window, text='4',variable=var_f, value=4).place(x=350, y= p1)
 #################################################################
+
+def head():
+    pass
+    #print(df.iloc[var_f.get()-2])
+tk.Button(window, text='查看表头', command=head).place(x=50, y=320)
+#################################################################
+
+
+tk.Label(window, text='输入你想查看的列:').place(x=50, y= 320)
 
 def example():
     i = 4
@@ -58,11 +90,11 @@ def example():
     df = df[["楼盘名称","楼盘类型","媒体数量"]]
     t2.insert("end", df)
 
-btn_example = tk.Button(window, text='查看其中一个城市', command=example)
-btn_example.place(x=170, y=320)
+btn_example = tk.Button(window, text='查看所填城市', command=example)
+btn_example.place(x=170, y=400)
 
 t2 = tk.Text(window, height=20, width=80)
-t2.place(x=50, y=350)
+t2.place(x=50, y=440)
 
 
 

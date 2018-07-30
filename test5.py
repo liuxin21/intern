@@ -7,14 +7,19 @@ from string import digits
 
 def changeStringvar1():
     #global a
+    global b,c
     a.set("1")
     print(a.get()) ## 在这print a.get()就能打印在控制台里面了
+    b = np.array([1,2,3])
+    c = 3
 def changeStringvar2():
     #global a
     a.set("2")
     print(a.get()) ## 在这print a.get()就能打印在控制台里面了
 def show():
     print(a.get())
+    print(b)
+    print(c)
     
 root=tk.Tk()
 a=tk.StringVar()
