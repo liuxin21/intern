@@ -42,42 +42,48 @@ t1.place(x=50, y=160)
 ##################################################################
 
 tk.Label(window, text='输入你想查看的城市:').place(x=50, y=280)
+tk.Label(window, text='(一次只能查看一个城市)').place(x=410, y= 280)
 var_city_name = tk.StringVar()
 var_city_name.set('例如：北京')
 entry_city_name = tk.Entry(window, textvariable=var_city_name)
 entry_city_name.place(x=200, y=280)
+
+tk.Label(window, text='输入你想查看的列:').place(x=50, y= 320)
+tk.Label(window, text='(以逗号隔开)').place(x=410, y= 320)
+var_column_name = tk.StringVar()
+var_column_name.set('例如：楼盘名称,楼盘类型,媒体数量')
+entry_column_name = tk.Entry(window, textvariable=var_column_name)
+entry_column_name.place(x=200, y=320)
+
 
 def print_one_city():
     global df
     city_name = var_city_name.get()
     index = sheets.index(city_name)
     df = pd.read_excel(excel_name, sheetname=sheets_org[index])
-    print(df.head())
+    t2.insert("end", df.head())
     
 btn_city = tk.Button(window, text='确定并查看该城市', command=print_one_city)
-btn_city.place(x=170, y=320)
+btn_city.place(x=200, y=360)
 
-t2 = tk.Text(window, height=6, width=80)
-t2.place(x=50, y=360)
+t2 = tk.Text(window, height=20, width=80)
+t2.place(x=50, y=400)
 ##################################################################
 
-p1 = 320
-tk.Label(window, text='表头在第几行:').place(x=50, y= p1)
-var_f = tk.IntVar()
-tk.Radiobutton(window, text='1',variable=var_f, value=1).place(x=200, y= p1)
-tk.Radiobutton(window, text='2',variable=var_f, value=2).place(x=250, y= p1)
-tk.Radiobutton(window, text='3',variable=var_f, value=3).place(x=300, y= p1)
-tk.Radiobutton(window, text='4',variable=var_f, value=4).place(x=350, y= p1)
+#p1 = 320
+#tk.Label(window, text='表头在第几行:').place(x=50, y= p1)
+#var_f = tk.IntVar()
+#tk.Radiobutton(window, text='1',variable=var_f, value=1).place(x=200, y= p1)
+#tk.Radiobutton(window, text='2',variable=var_f, value=2).place(x=250, y= p1)
+#tk.Radiobutton(window, text='3',variable=var_f, value=3).place(x=300, y= p1)
+#tk.Radiobutton(window, text='4',variable=var_f, value=4).place(x=350, y= p1)
 #################################################################
 
-def head():
-    pass
+#def head():
+#    pass
     #print(df.iloc[var_f.get()-2])
-tk.Button(window, text='查看表头', command=head).place(x=50, y=320)
+#tk.Button(window, text='查看表头', command=head).place(x=50, y=320)
 #################################################################
-
-
-tk.Label(window, text='输入你想查看的列:').place(x=50, y= 320)
 
 def example():
     i = 4
@@ -92,11 +98,11 @@ def example():
     df = df[["楼盘名称","楼盘类型","媒体数量"]]
     t2.insert("end", df)
 
-btn_example = tk.Button(window, text='查看所填城市', command=example)
-btn_example.place(x=170, y=400)
+#btn_example = tk.Button(window, text='查看所填城市', command=example)
+#btn_example.place(x=170, y=400)
 
-t2 = tk.Text(window, height=20, width=80)
-t2.place(x=50, y=440)
+#t2 = tk.Text(window, height=20, width=80)
+#t2.place(x=50, y=440)
 
 
 
