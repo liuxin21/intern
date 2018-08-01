@@ -60,7 +60,7 @@ def print_one_city():
     global city_name,df
     city_name = var_city_name.get()
     index = sheets.index(city_name)
-    df = pd.read_excel(excel_name, sheetname=sheets_org[index])
+    df = pd.read_excel(excel_name, sheet_name=sheets_org[index])
     df.columns = df.iloc[0]
     df.index = range(len(df))
     df.drop([0], axis=0, inplace=True)
